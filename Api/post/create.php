@@ -28,6 +28,6 @@
       );
   } else {
     echo json_encode(
-        array('message' => 'Post not created')
+        array('message' => 'Error Post not created')
     );
   }

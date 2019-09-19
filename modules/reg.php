@@ -36,10 +36,10 @@
             $this->password = htmlspecialchars(htmlentities(strip_tags($this->password)));
 
             // bind data
-            $stmt->bindParam('fName', $this->fName);
-            $stmt->bindParam('lName', $this->lName);
-            $stmt->bindParam('userName', $this->userName);
-            $stmt->bindParam('password', $this->password);
+            $stmt->bindParam(':fName', $this->fName);
+            $stmt->bindParam(':lName', $this->lName);
+            $stmt->bindParam(':userName', $this->userName);
+            $stmt->bindParam(':password', $this->password);
 
             // exec query
             if($stmt->execute()) {

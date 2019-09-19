@@ -67,8 +67,43 @@ class post {
         $this->post = htmlspecialchars(htmlentities(strip_tags($this->post)));
 
         // bind data
-        $stmt->bindParam('category', $this->category);
-        $stmt->bindParam('post', $this->post);
+        $stmt->bindParam(':category', $this->category);
+        $stmt->bindParam(':post', $this->post);
+
+        // exec query
+        if($stmt->execute()) {
+            return true;
+        }
+
+        // print error
+        printf('Error: %s.\n', $stmt->error);
+
+        return false;
+    }
+
+    // Update post
+    public function update() {
+        // create query
+        $ql = 'UPDATE ' . 
+                $this->table . '
+            SET
+                category = :category,
+                post = :post
+            WHERE
+            id = :id';
+
+        // prepare statement
+        $stmt = $this->conn->prepare($ql);
+
+        // clean data
+        $this->category = htmlspecialchars(htmlentities(strip_tags($this->category)));
+        $this->post = htmlspecialchars(htmlentities(strip_tags($this->post)));
+        $this->id = htmlspecialchars(htmlentities(strip_tags($this->id)));
+
+        // bind data
+        $stmt->bindParam(':category', $this->category);
+        $stmt->bindParam(':post', $this->post);
+        $stmt->bindParam(':id', $this->id);
 
         // exec query
         if($stmt->execute()) {

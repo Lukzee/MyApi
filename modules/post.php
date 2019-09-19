@@ -115,4 +115,19 @@ class post {
 
         return false;
     }
+
+    // Delete post
+    public function delete() {
+        // create query
+        $ql = 'DELETE FROM ' . $this->table . 'WHERE id = :id';
+
+        // prepare statement
+        $stmt = $this->conn->prepare($ql);
+
+        // clean data
+        $this->id = htmlspecialchars(htmlentities(strip_tags($this->id)));
+
+        // bind data
+        $stmt->bindParam(':id', $this->id);
+    }
 }

@@ -129,5 +129,16 @@ class post {
 
         // bind data
         $stmt->bindParam(':id', $this->id);
+
+        // execute query
+        if($stmt->execute()) {
+            return true;
+        }
+
+        // print error
+        printf("Error: %s.\n", $stmt->error);
+
+        return false;
     }
+    
 }

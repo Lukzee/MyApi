@@ -119,7 +119,7 @@ class post {
     // Delete post
     public function delete() {
         // create query
-        $ql = 'DELETE FROM ' . $this->table . 'WHERE id = :id';
+        $ql = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 
         // prepare statement
         $stmt = $this->conn->prepare($ql);
@@ -140,5 +140,5 @@ class post {
 
         return false;
     }
-    
+
 }

@@ -24,10 +24,10 @@
   // delete post
   if($post->delete()) {
       echo json_encode(
-          array('message' => 'Post Deleted successfully')
+        array('message' => 'Post Deleted successfully')
       );
   } else {
     echo json_encode(
-        array('message' => 'Error Post not Deleted')
+      array('message' => 'Error Post not Deleted')
     );
   }

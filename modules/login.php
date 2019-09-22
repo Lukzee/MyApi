@@ -25,9 +25,9 @@ class login {
         FROM 
             ' .$this->table. ' 
         WHERE
-            user = :user
+            user = ?
         AND 
-            pass = :pass';
+            pass = ?';
 
         // prepare statmnt
         $stmt = $this->conn->prepare($ql);
@@ -37,10 +37,13 @@ class login {
         $this->pass = htmlspecialchars(htmlentities(strip_tags($this->pass)));
 
         // bind data
-        $stmt->bindParam(':user', $this->user);
-        $stmt->bindParam(':pass', $this->pass);
+        $stmt->bindParam(1, $this->user);
+        $stmt->bindParam(2, $this->pass);
 
-        if(mysql_num_rows($stmt) == 1){
+        // exec query
+        $stmt->execute();
+
+        if($stmt->rowCount() == 1) {
             if($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['user'] = $row['user'];

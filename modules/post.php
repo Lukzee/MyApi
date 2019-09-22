@@ -90,7 +90,7 @@ class post {
                 category = :category,
                 post = :post
             WHERE
-            id = :id';
+                id = :id';
 
         // prepare statement
         $stmt = $this->conn->prepare($ql);

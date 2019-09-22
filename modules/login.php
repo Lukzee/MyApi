@@ -25,7 +25,8 @@ class login {
         FROM 
             ' .$this->table. ' 
         WHERE
-            user = :user,
+            user = :user
+        AND 
             pass = :pass';
 
         // prepare statmnt

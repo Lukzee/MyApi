@@ -40,13 +40,19 @@ class login {
         $stmt->bindParam(':user', $this->user);
         $stmt->bindParam(':pass', $this->pass);
 
-        // exec query
-        if($stmt->execute()){
-            return true;
+        if(mysql_num_rows($stmt) == 1){
+            if($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['user'] = $row['user'];
+                
+                echo json_encode(
+                    array('message' => 'Welcome Mr/Mrs ' . $_SESSION['user'])
+                );
+            }
+        } else {
+            echo json_encode(
+                array('message' => 'Incorrect Username or Password')
+            );
         }
-
-        // error
-        printf('Error: %s.\n', $stmt->error);
-        return false;
     }
 }

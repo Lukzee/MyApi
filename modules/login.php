@@ -58,4 +58,29 @@ class login {
             );
         }
     }
+
+    public function logout() {
+        // log out
+        if(isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+            echo json_encode(
+                array('message' => 'logout succeeded')
+            );
+        }else{
+            echo json_encode(
+                array('message' => 'user is offline')
+            );
+        }
+
+        if(isset($_SESSION['id'])) {
+            unset($_SESSION['id']);
+            echo json_encode(
+                array('message' => 'logout succeeded')
+            );
+        }else{
+            echo json_encode(
+                array('message' => 'user is offline')
+            );
+        }
+    }
 }

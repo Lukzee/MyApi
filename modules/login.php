@@ -84,3 +84,9 @@ class login {
         }
     }
 }
+
+function restrict_acess(){
+    if($_SESSION['id'] == ""){
+        header("location: login.php");
+    }
+}
